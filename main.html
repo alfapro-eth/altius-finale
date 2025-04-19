@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Altius Archive Terminal</title>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #1a1a1a, #0d0d0d);
+      color: #d3cfa8;
+      font-family: 'Georgia', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    #container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border: 1px solid #444;
+      box-shadow: 0 0 15px #222;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+    input[type="text"] {
+      padding: 0.5rem;
+      width: 80%;
+      margin-bottom: 1rem;
+      background: #1f1f1f;
+      border: 1px solid #444;
+      color: #d3cfa8;
+      font-size: 1rem;
+    }
+    button {
+      background: #333;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: #d3cfa8;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:disabled {
+      background: #222;
+      cursor: not-allowed;
+    }
+    #message {
+      margin-top: 1rem;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>Altius Archive</h1>
+    <p>Enter the access word to unlock the final protocol:</p>
+    <input type="text" id="codeInput" placeholder="Enter code...">
+    <button onclick="checkCode()" id="submitButton">Enter</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    (() => {
+      const z = "WQMOM",
+      Y = (w, q) => [...w.toUpperCase()].map((x, i) => 
+        String.fromCharCode((((x.charCodeAt(0) - 65) + (q.toUpperCase().charCodeAt(i % q.length) - 65)) % 26) + 65)
+      ).join(""),
+      v = () => {
+        let d = document,
+        a = x => d.getElementById(x),
+        b = a("codeInput").value.replace(/\s+/g, '').toUpperCase(),
+        c = a("message"),
+        e = a("submitButton"),
+        f = (g => Y(g, g))(b);
+        c.innerHTML = f === z ?
+`✅ ACCESS GRANTED
+
+Welcome to the final archive of AltiusLabs.
+
+You have proven yourself not just as a solver of puzzles, but as a vital thread in the great tapestry we are weaving.
+
+AltiusLabs is more than a vision — it is the ignition point of a blockchain renaissance. We are rewriting the rules of decentralization, trust, and technology.
+
+Our mission at https://www.altiuslabs.xyz/ is to push blockchain forward — toward performance, composability, privacy, and developer-friendliness. We aim to solve the limitations of today’s Layer 1 and Layer 2 ecosystems by building infrastructure for a new era of scalable, modular and efficient blockchain networks.
+
+Your journey through the dows has illuminated what truly matters: curiosity, collaboration, and cryptographic courage.
+
+You are now part of something greater.
+You are Altius.` :
+`❌ Invalid code. Please retrace your steps and verify your findings.`;
+        e.disabled = f === z;
+      };
+      window['\x63\x68\x65\x63\x6b\x43\x6f\x64\x65'] = v;
+    })();
+  </script>
+</body>
+</html>
